@@ -224,10 +224,6 @@ linters-settings:
     # Select the Go version to target
     checks: ["all"]
 
-  unused:
-    # Treat code as a program (not a library)
-    check-exported: false
-
   whitespace:
     # Enforce newlines (or comments) after multi-line function signatures
     multi-func: true
