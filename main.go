@@ -1,7 +1,9 @@
+// Package main is the entry point for the projectShell application.
 package main
 
 import (
 	"fmt"
+
 	"github.com/davealexenglish/projectShell/pkg/user"
 )
 

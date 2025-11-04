@@ -17,6 +17,8 @@ go.work
 # Build output
 myproject
 myproject-*
+projectShell
+projectShell-*
 /bin/
 /build/
 /dist/
@@ -38,6 +40,9 @@ coverage.html
 .DS_Store
 *.iml
 
+# But keep .vscode settings if you want to commit them (optional)
+# !.vscode/settings.json
+
 # Environment variables
 .env
 .env.local
@@ -49,3 +54,23 @@ coverage.html
 # Temporary files
 tmp/
 temp/
+
+# Go module backup files
+go.mod.bak
+go.sum.bak
+
+# Air live reload (if using)
+.air.toml
+
+# golangci-lint cache
+.golangci-lint-cache/
+
+# Test cache
+.cache/
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# OS specific
+Thumbs.db

@@ -7,17 +7,17 @@ import (
 func TestNewUser(t *testing.T) {
 	name := "John Doe"
 	email := "john@example.com"
-	
+
 	u := NewUser(name, email)
-	
+
 	if u.Name != name {
 		t.Errorf("Expected name %s, got %s", name, u.Name)
 	}
-	
+
 	if u.Email != email {
 		t.Errorf("Expected email %s, got %s", email, u.Email)
 	}
-	
+
 	if u.ID == "" {
 		t.Error("Expected non-empty ID")
 	}
@@ -37,7 +37,7 @@ func TestIsValidEmail(t *testing.T) {
 		{"invalid no user", "@example.com", false},
 		{"invalid spaces", "test @example.com", false},
 	}
-	
+
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			u := NewUser("Test", tt.email)
@@ -55,10 +55,10 @@ func TestUserString(t *testing.T) {
 		Name:  "Jane Doe",
 		Email: "jane@example.com",
 	}
-	
+
 	result := u.String()
 	expected := "User{ID: test-id-123, Name: Jane Doe, Email: jane@example.com}"
-	
+
 	if result != expected {
 		t.Errorf("String() = %s, want %s", result, expected)
 	}
