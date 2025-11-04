@@ -1,137 +1,120 @@
-# MyProject
+# ProjectShell
 
-A sample Go project demonstrating Go modules, package structure, and testing.
+A professional Go project template with comprehensive development workflow, testing, and CI/CD setup.
+
+## Quick Start
+
+```bash
+# Clone and setup
+git clone https://github.com/davealexenglish/projectShell.git
+cd projectShell
+
+# Install dependencies and tools
+make deps
+make install-tools
+
+# Install git hooks (recommended)
+make install-hooks
+
+# Run the application
+make run
+
+# Run all quality checks
+make audit
+```
+
+## Features
+
+- **Complete Makefile**: 30+ commands for development, testing, and building
+- **Comprehensive Linting**: golangci-lint with 40+ enabled linters
+- **Pre-commit Hooks**: Automated quality checks before every commit
+- **GitHub Actions CI/CD**: Multi-platform testing and building
+- **Race Detection**: Built-in race condition detection
+- **Coverage Reports**: HTML coverage reports with one command
+- **Cross-platform Builds**: Build for Linux, macOS, and Windows
+- **Developer Documentation**: Complete development guide
+
+## Documentation
+
+- **[DEVELOPMENT.md](DEVELOPMENT.md)**: Complete development guide with best practices
+- **[Makefile](Makefile)**: All available commands (run `make help`)
+- **[.golangci.yml](.golangci.yml)**: Linter configuration
 
 ## Project Structure
 
 ```
-myproject/
-├── go.mod              # Go module definition
-├── go.sum              # Module checksums (auto-generated)
-├── main.go             # Application entry point
+projectShell/
+├── .github/
+│   └── workflows/
+│       └── ci.yml           # GitHub Actions CI/CD
+├── .golangci.yml            # Comprehensive linter config
+├── .editorconfig            # Editor configuration
+├── scripts/
+│   └── pre-commit.sh        # Git pre-commit hook
 ├── pkg/
 │   └── user/
-│       ├── user.go     # User package implementation
-│       └── user_test.go # User package tests
-└── README.md           # This file
+│       ├── user.go          # User package
+│       └── user_test.go     # Tests
+├── main.go                  # Application entry point
+├── go.mod                   # Go module definition
+├── Makefile                 # Development workflow
+├── DEVELOPMENT.md           # Developer guide
+└── README.md                # This file
 ```
 
-## Prerequisites
+## Quick Reference
 
-- Go 1.21 or higher
-- Git (for module management)
-
-## Getting Started
-
-### 1. Initialize the Project
-
-First, clone or create the project directory with the files provided. Update the module path in `go.mod` to match your repository:
+### Essential Commands
 
 ```bash
-# Edit go.mod and replace:
-# module github.com/davealexenglish/projectShell
-# with your actual repository path
+make help         # Show all available commands
+make run          # Run the application
+make test         # Run all tests
+make test-race    # Run tests with race detection
+make test-cover   # Generate coverage report
+make lint         # Run all linters
+make lint-fix     # Auto-fix linting issues
+make fmt          # Format all code
+make build        # Build binary
+make audit        # Run all quality checks
+make ci           # Run CI checks locally
 ```
 
-### 2. Install Dependencies
+### Development Workflow
 
-The project uses the `github.com/google/uuid` package for generating unique identifiers. Install all dependencies with:
-
-```bash
-go mod download
-```
-
-Or let Go automatically download dependencies when you build:
-
-```bash
-go mod tidy
-```
-
-This command will:
-- Download any missing modules
-- Remove unused modules
-- Update `go.sum` with checksums
-
-## Building
-
-Build the project executable:
-
-```bash
-go build -o myproject
-```
-
-This creates an executable named `myproject` (or `myproject.exe` on Windows).
-
-### Build for Different Platforms
-
-```bash
-# For Linux
-GOOS=linux GOARCH=amd64 go build -o myproject-linux
-
-# For Windows
-GOOS=windows GOARCH=amd64 go build -o myproject.exe
-
-# For macOS
-GOOS=darwin GOARCH=amd64 go build -o myproject-mac
-```
-
-## Running
-
-Run the project directly without building:
-
-```bash
-go run main.go
-```
-
-Or run the built executable:
-
-```bash
-./myproject
-```
+1. **Make changes** to your code
+2. **Run checks**: `make audit` or `make pre-commit`
+3. **Commit**: Git hooks will run automatically
+4. **Push**: CI will run in GitHub Actions
 
 ## Testing
 
-### Run All Tests
-
 ```bash
-go test ./...
+# Run all tests
+make test
+
+# Run with race detection (recommended)
+make test-race
+
+# Generate coverage report
+make test-cover
+# Opens coverage.html in browser
+
+# Run benchmarks
+make test-bench
 ```
 
-### Run Tests with Verbose Output
+## Building
 
 ```bash
-go test -v ./...
-```
+# Build for current platform
+make build
 
-### Run Tests in a Specific Package
+# Build for all platforms
+make build-all
 
-```bash
-go test ./pkg/user
-```
-
-### Run a Specific Test
-
-```bash
-go test -v -run TestNewUser ./pkg/user
-```
-
-### Run Tests with Coverage
-
-```bash
-go test -cover ./...
-```
-
-### Generate Coverage Report
-
-```bash
-# Generate coverage profile
-go test -coverprofile=coverage.out ./...
-
-# View coverage in terminal
-go tool cover -func=coverage.out
-
-# Generate HTML coverage report
-go tool cover -html=coverage.out -o coverage.html
+# Install to $GOPATH/bin
+make install
 ```
 
 ## Dependencies
